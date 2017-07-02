@@ -32,7 +32,6 @@ def webhook():
     # print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
-    r = json.dumps(r)
     return r
 
 
@@ -53,6 +52,7 @@ def processRequest(req):
 
 
 def makeYqlQuery(req):
+    req = json.loads(req)
     result = req.get("result")
     parameters = result.get("parameters")
     bitcoinType = parameters.get("bitcoinType")
